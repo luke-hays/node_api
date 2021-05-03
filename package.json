@@ -1,0 +1,30 @@
+{
+  "name": "sparkpostexcercise",
+  "version": "1.0.0",
+  "description": "coding excercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --verbose --runInBand",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luke-hays/takehome.git"
+  },
+  "author": "Luke Hays",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luke-hays/takehome/issues"
+  },
+  "homepage": "https://github.com/luke-hays/takehome#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7"
+  }
+}
