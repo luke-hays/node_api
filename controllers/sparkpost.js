@@ -1,27 +1,34 @@
 /* eslint-disable no-unused-vars */
 const sparkpostRouter = require('express').Router()
-const fs = require('fs')
+const personHelper = require('../utils/person_helper')
 const config = require('../utils/config')
 
-sparkpostRouter.get('/', async (request, response) => {
-	fs.readFile(config.personsFilePath, (error, data) => {
-		if (error) throw error
-		let person = JSON.parse(data)
-		console.log(person)
-	})
+sparkpostRouter.get('/', (request, response) => {
+	const persons = personHelper.personsData()
+	response.status(200).json(persons)
+})
 
-	response.status(200).json()
+sparkpostRouter.get('/:name', (request, response) => {
+	const data = personHelper.personsData()
+	const persons = Object.keys(data).map(key => data[key])
+	const name = request.params.name
+
+	console.log(persons)
+
+	const person = persons.find(p => p.name.toUpperCase() === name.toUpperCase())
+
+	response.status(200).json(person)
 })
 
 sparkpostRouter.post('/', (request, response) => {
 
 })
 
-sparkpostRouter.put('/:id', (request, response) => {
+sparkpostRouter.put('/:name', (request, response) => {
 
 })
 
-sparkpostRouter.delete('/:id', (request, response) => {
+sparkpostRouter.delete('/:name', (request, response) => {
 
 })
 
