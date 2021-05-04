@@ -19,7 +19,12 @@ const initialPersons = [
 ]
 
 const initPersonsData = () => {
-	fs.writeFile(personsFilePath, JSON.stringify(initialPersons), () => {})
+	try {
+		fs.writeFile(personsFilePath, JSON.stringify(initialPersons), () => {})
+	}
+	catch (error) {
+		console.log(error)
+	}
 }
 
 module.exports = {
