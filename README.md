@@ -21,5 +21,4 @@ I have a linter set up, config file is .eslintrc.js in root so you can see the c
 
 utils contains a couple of things that I think are helpful including a logger and middleware file for handling logging and errors. They are barebones because there isn't much to handle here. person_helper.js is the file responsible for actually modifying the data stored while the server is running.
 
-An error occurs when the data/persons.json file is empty. This can be fixed by placing an empty array in the file. The file should normally reconstruct itself on each run but in cases where there are errors this might occur.
-
+An error occurs when the data/persons.json file is empty. This can be fixed by placing an empty array in the file. The file should normally reconstruct itself on each run, and this shouldn't occur at all. But it's something to be aware of.
