@@ -6,7 +6,7 @@ Thank you for taking the time to look over my code. I believe I've included all 
 The package.json file contains several scripts for running - standard npm start or npm run dev.
 
 ### In browser
-You should be able to use http://localhost:3001/sparkpost to make GET requests easily. You may also query by names (case shouldnt matter). Please see the data/persons.json for the initial names and ages. All payloads will be stored in this file as well.
+You should be able to use `http://localhost:3001/sparkpost` to make GET requests easily. You may also query by names (case shouldnt matter). Please see the data/persons.json for the initial names and ages. All payloads will be stored in this file as well.
 
 ### Test Framework
 I used Jest to create and run test cases while developing the controller. A quick run can be done using "npm run test" and you can find the test cases within the tests directory.
