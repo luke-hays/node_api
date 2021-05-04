@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const supertest = require('supertest')
 const app = require('../app')
 const api = supertest(app)
@@ -75,7 +74,6 @@ describe('modifying persons database', () => {
 			.send(newAge)
 
 		const personsAfterUpdate = personHelper.personsData()
-		console.log(personsAfterUpdate[0])
 		expect(personsAfterUpdate[0].age).toBe(newAge.age)
 	})
 })
@@ -111,11 +109,9 @@ describe('validate adding persons', () => {
 	test('person requires name and age to be added', async () => {
 		const newPerson = { }
 
-		const result = await api
+		await api
 			.post('/sparkpost')
 			.send(newPerson)
 			.expect(400)
-
-		console.log(result.body)
 	})
 })

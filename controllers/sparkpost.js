@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const sparkpostRouter = require('express').Router()
 const personHelper = require('../utils/person_helper')
 
@@ -15,7 +14,6 @@ sparkpostRouter.get('/:name', (request, response) => {
 
 sparkpostRouter.post('/', async (request, response) => {
 	const person = request.body
-	console.log(person)
 
 	if (person.name === undefined || person.age === undefined) {
 		return response.status(400).json({ error: 'name and age must be given' })
@@ -42,9 +40,14 @@ sparkpostRouter.put('/:name', (request, response) => {
 
 sparkpostRouter.delete('/:name', (request, response) => {
 	const name = request.params.name
-	personHelper.deletePerson(name)
+	const isDeleted = personHelper.deletePerson(name)
 
-	response.status(204).end()
+	if (isDeleted) {
+		response.status(204).end()
+	} else {
+		return response.status(400).json({ error: 'unable to locate person' })
+	}
+
 })
 
 module.exports = sparkpostRouter

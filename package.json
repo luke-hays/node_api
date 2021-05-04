@@ -4,9 +4,9 @@
   "description": "coding excercise",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js --ignore data/",
-    "test": "jest --verbose --runInBand",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js --ignore data/",
+    "test": "NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint ."
   },
   "repository": {
