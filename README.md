@@ -1,6 +1,6 @@
 # SparkPost Coding Excercise
 
-Thank you for taking the time to look over my code. I believe I've included all files necessary to run this app. Please let me know if you have any questions or issues!
+Thank you for taking the time to look over my code. I believe I've included all files necessary to run this app. Please let me know if you have any questions or issues.
 
 ## Running
 The package.json file contains several scripts for running - standard npm start or npm run dev.
