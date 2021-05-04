@@ -1,35 +1,50 @@
 /* eslint-disable no-unused-vars */
 const sparkpostRouter = require('express').Router()
 const personHelper = require('../utils/person_helper')
-const config = require('../utils/config')
 
 sparkpostRouter.get('/', (request, response) => {
-	const persons = personHelper.personsData()
-	response.status(200).json(persons)
+	response.status(200).json(personHelper.personsData())
 })
 
 sparkpostRouter.get('/:name', (request, response) => {
-	const data = personHelper.personsData()
-	const persons = Object.keys(data).map(key => data[key])
 	const name = request.params.name
-
-	console.log(persons)
-
-	const person = persons.find(p => p.name.toUpperCase() === name.toUpperCase())
+	const person = personHelper.findPerson(name)
 
 	response.status(200).json(person)
 })
 
-sparkpostRouter.post('/', (request, response) => {
+sparkpostRouter.post('/', async (request, response) => {
+	const person = request.body
+	console.log(person)
 
+	if (person.name === undefined || person.age === undefined) {
+		return response.status(400).json({ error: 'name and age must be given' })
+	} else if (personHelper.findPerson(person.name)) {
+		return response.status(400).json({ error: 'names must be unique' })
+	} else if (person.age < 0) {
+		return response.status(400).json({ error: 'age cannot be negative' })
+	}
+
+	personHelper.addPerson(person)
+	const personsAfterUpdate = personHelper.personsData()
+
+	response.status(201).json(personsAfterUpdate[personsAfterUpdate.length - 1])
 })
 
 sparkpostRouter.put('/:name', (request, response) => {
+	const name = request.params.name
+	const age = request.body.age
 
+	personHelper.updateAge(name, age)
+
+	response.json(personHelper.findPerson(name))
 })
 
 sparkpostRouter.delete('/:name', (request, response) => {
+	const name = request.params.name
+	personHelper.deletePerson(name)
 
+	response.status(204).end()
 })
 
 module.exports = sparkpostRouter

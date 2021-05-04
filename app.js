@@ -9,7 +9,7 @@ const app = express()
 config.initPersonsData()
 
 app.use(express.json())
-app.use(middleware.requestLogger)
+// app.use(middleware.requestLogger)
 
 app.use('/sparkpost', sparkpostRouter)
 

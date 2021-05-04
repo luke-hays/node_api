@@ -1,0 +1,7 @@
+POST http://localhost:3001/sparkpost/
+Content-Type: application/json
+
+{
+    "name": "testGuy",
+    "age": 33
+}

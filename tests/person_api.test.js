@@ -21,7 +21,7 @@ describe('get persons', () => {
 
 	test('get person by name', async () => {
 		const initialPersons = personHelper.personsData()
-		const person = initialPersons[1]
+		const person = initialPersons[0]
 
 		const personResult = await api
 			.get(`/sparkpost/${person.name}`)
@@ -34,28 +34,88 @@ describe('get persons', () => {
 
 describe('modifying persons database', () => {
 	test('can add a new person', async () => {
-		throw new Error('Not implemented')
+		const newPerson = {
+			name: 'Samwise',
+			age: 39
+		}
+
+		await api
+			.post('/sparkpost')
+			.send(newPerson)
+			.expect(201)
+			.expect('Content-Type', /application\/json/)
+
+		const personsAfterUpdate = personHelper.personsData()
+		const names = personsAfterUpdate.map(p => p.name)
+
+		expect(names).toContain(newPerson.name)
 	})
 
 	test('can delete a person', async () => {
-		throw new Error('Not implemented')
+		const initialPersons = personHelper.personsData()
+		const personToDelete = initialPersons[0].name
+
+		await api
+			.delete(`/sparkpost/${personToDelete}`)
+			.expect(204)
+
+		const personsAfterDelete = personHelper.personsData()
+		const names = personsAfterDelete.map(p => p.name)
+
+		expect(names).not.toContain(personToDelete)
 	})
 
-	test('should be able to update a person name given age', async () => {
-		throw new Error('Not implemented')
+	test('update a person\'s age given name', async () => {
+		const initialPersons = personHelper.personsData()
+		const personToUpdate = initialPersons[0].name
+		const newAge = { age: 33 }
+
+		await api
+			.put(`/sparkpost/${personToUpdate}`)
+			.send(newAge)
+
+		const personsAfterUpdate = personHelper.personsData()
+		console.log(personsAfterUpdate[0])
+		expect(personsAfterUpdate[0].age).toBe(newAge.age)
 	})
 })
 
-describe('validate person', () => {
+describe('validate adding persons', () => {
 	test('age should not be negative', async () => {
-		throw new Error('Not implemented')
+		const newPerson = {
+			name: 'Samwise',
+			age: -1
+		}
+
+		await api
+			.post('/sparkpost')
+			.send(newPerson)
+			.expect(400)
+			.expect('Content-Type', /application\/json/)
 	})
 
 	test('person names should be unique', async () => {
-		throw new Error('Not implemented')
+		const newPerson = {
+			name: 'Samwise',
+			age: 39
+		}
+
+		await api
+			.post('/sparkpost')
+			.send(newPerson)
+			.expect(400)
+			.expect('Content-Type', /application\/json/)
+
 	})
 
 	test('person requires name and age to be added', async () => {
-		throw new Error('Not implemented')
+		const newPerson = { }
+
+		const result = await api
+			.post('/sparkpost')
+			.send(newPerson)
+			.expect(400)
+
+		console.log(result.body)
 	})
 })
