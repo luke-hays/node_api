@@ -1,18 +1,18 @@
-const sparkpostRouter = require('express').Router()
+const router = require('express').Router()
 const personHelper = require('../utils/person_helper')
 
-sparkpostRouter.get('/', (request, response) => {
+router.get('/', (request, response) => {
 	response.status(200).json(personHelper.personsData())
 })
 
-sparkpostRouter.get('/:name', (request, response) => {
+router.get('/:name', (request, response) => {
 	const name = request.params.name
 	const person = personHelper.findPerson(name)
 
 	response.status(200).json(person)
 })
 
-sparkpostRouter.post('/', async (request, response) => {
+router.post('/', async (request, response) => {
 	const person = request.body
 
 	if (person.name === undefined || person.age === undefined) {
@@ -29,7 +29,7 @@ sparkpostRouter.post('/', async (request, response) => {
 	response.status(201).json(personsAfterUpdate[personsAfterUpdate.length - 1])
 })
 
-sparkpostRouter.put('/:name', (request, response) => {
+router.put('/:name', (request, response) => {
 	const name = request.params.name
 	const age = request.body.age
 
@@ -38,7 +38,7 @@ sparkpostRouter.put('/:name', (request, response) => {
 	response.json(personHelper.findPerson(name))
 })
 
-sparkpostRouter.delete('/:name', (request, response) => {
+router.delete('/:name', (request, response) => {
 	const name = request.params.name
 	const isDeleted = personHelper.deletePerson(name)
 
@@ -50,4 +50,4 @@ sparkpostRouter.delete('/:name', (request, response) => {
 
 })
 
-module.exports = sparkpostRouter
+module.exports = router
