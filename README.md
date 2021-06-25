@@ -1,7 +1,3 @@
-# SparkPost Coding Excercise
-
-Thank you for taking the time to look over my code. I believe I've included all files necessary to run this app. Please let me know if you have any questions or issues.
-
 ## Running
 The package.json file contains several scripts for running - standard npm start or npm run dev.
 
@@ -12,7 +8,7 @@ You should be able to use `http://localhost:3001/sparkpost` to make GET requests
 I used Jest to create and run test cases while developing the controller. A quick run can be done using "npm run test" and you can find the test cases within the tests directory.
 
 ### Dev environment
-If you use Visual Studio Code, I have a directory with requests you may run and modify to quickly test if you can hit the endpoints for the server. These will require the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). I like using these to quickly sending requests without having to switch to a tool like Postman while in running in dev. It works nicely while running nodemon
+If you use Visual Studio Code, I have a directory with requests you may run and modify to quickly test if you can hit the endpoints for the server. These will require the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). I like using these to quickly sending requests without having to switch to a tool like Postman while in running in dev. It works nicely while running nodemon.
 
 You could also make the requests on a preferred tool.
 
