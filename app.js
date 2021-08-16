@@ -1,5 +1,5 @@
 const express = require('express')
-const sparkpostRouter = require('./controllers/sparkpost')
+const personRouter = require('./controllers/person')
 const middleware = require('./utils/middleware')
 const config = require('./utils/config')
 
@@ -11,7 +11,7 @@ config.initPersonsData()
 app.use(express.json())
 app.use(middleware.requestLogger)
 
-app.use('/sparkpost', sparkpostRouter)
+app.use('/person', personRouter)
 
 app.use(middleware.errorHandler)
 

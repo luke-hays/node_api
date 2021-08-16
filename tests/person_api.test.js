@@ -11,7 +11,7 @@ beforeEach(() => {
 describe('get persons', () => {
 	test('get all persons', async () => {
 		const result = await api
-			.get('/sparkpost')
+			.get('/person')
 			.expect(200)
 			.expect('Content-Type', /application\/json/)
 
@@ -23,7 +23,7 @@ describe('get persons', () => {
 		const person = initialPersons[0]
 
 		const personResult = await api
-			.get(`/sparkpost/${person.name}`)
+			.get(`/person/${person.name}`)
 			.expect(200)
 			.expect('Content-Type', /application\/json/)
 
@@ -39,7 +39,7 @@ describe('modifying persons database', () => {
 		}
 
 		await api
-			.post('/sparkpost')
+			.post('/person')
 			.send(newPerson)
 			.expect(201)
 			.expect('Content-Type', /application\/json/)
@@ -55,7 +55,7 @@ describe('modifying persons database', () => {
 		const personToDelete = initialPersons[0].name
 
 		await api
-			.delete(`/sparkpost/${personToDelete}`)
+			.delete(`/person/${personToDelete}`)
 			.expect(204)
 
 		const personsAfterDelete = personHelper.personsData()
@@ -70,7 +70,7 @@ describe('modifying persons database', () => {
 		const newAge = { age: 33 }
 
 		await api
-			.put(`/sparkpost/${personToUpdate}`)
+			.put(`/person/${personToUpdate}`)
 			.send(newAge)
 
 		const personsAfterUpdate = personHelper.personsData()
@@ -86,7 +86,7 @@ describe('validate adding persons', () => {
 		}
 
 		await api
-			.post('/sparkpost')
+			.post('/person')
 			.send(newPerson)
 			.expect(400)
 			.expect('Content-Type', /application\/json/)
@@ -99,7 +99,7 @@ describe('validate adding persons', () => {
 		}
 
 		await api
-			.post('/sparkpost')
+			.post('/person')
 			.send(newPerson)
 			.expect(400)
 			.expect('Content-Type', /application\/json/)
@@ -110,7 +110,7 @@ describe('validate adding persons', () => {
 		const newPerson = { }
 
 		await api
-			.post('/sparkpost')
+			.post('/person')
 			.send(newPerson)
 			.expect(400)
 	})
