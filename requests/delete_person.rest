@@ -1,1 +1,1 @@
-DELETE http://localhost:3001/sparkpost/frodo
+DELETE http://localhost:3001/person/frodo

@@ -1,4 +1,4 @@
-PUT http://localhost:3001/sparkpost/frodo
+PUT http://localhost:3001/person/frodo
 Content-Type: application/json
 
 {
